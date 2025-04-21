@@ -18,7 +18,7 @@ interface WebNavCardProps {
   id?: number;
   detail?: string;
   collection_time?: string;
-  created_at?: any;
+  created_at?: string;
   category_name?: string;
   tag_name?: string;
   // The following are required in WebNavigation but not used in this component

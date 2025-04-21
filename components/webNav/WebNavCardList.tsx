@@ -18,7 +18,8 @@ export default function WebNavCardList({ dataList }: { dataList: (WebNavigation 
           id={item.id}
           detail={item.detail}
           collection_time={item.collection_time}
-          created_at={item.created_at}
+          // Using collection_time as created_at since created_at doesn't exist in WebNavigation type
+          created_at={item.collection_time}
           category_name={item.category_name}
           tag_name={item.tag_name}
           // Add missing properties with default values
