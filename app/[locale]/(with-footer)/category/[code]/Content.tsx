@@ -16,7 +16,7 @@ export default function Content({
   route,
 }: {
   headerTitle: string;
-  navigationList: WebNavigation[];
+  navigationList: (WebNavigation & { tags?: string[] })[];
   currentPage: number;
   total: number;
   pageSize: number;

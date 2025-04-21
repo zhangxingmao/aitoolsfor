@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: { code: string; pageNum
     supabase.from('navigation_category').select().eq('name', params.code),
     supabase
       .from('web_navigation')
-      .select('*', { count: 'exact' })
+      .select('*, tag_name', { count: 'exact' })
       .eq('category_name', params.code)
       .range(0, InfoPageSize - 1),
   ]);
@@ -40,10 +40,16 @@ export default async function Page({ params }: { params: { code: string; pageNum
     notFound();
   }
 
+  // 处理数据，为每个导航项添加标签
+  const navigationListWithTags = navigationList?.map((item) => ({
+    ...item,
+    tags: item.tag_name ? [item.tag_name] : [],
+  }));
+
   return (
     <Content
       headerTitle={categoryList[0]!.title || params.code}
-      navigationList={navigationList!}
+      navigationList={navigationListWithTags!}
       currentPage={currentPage}
       total={count!}
       pageSize={InfoPageSize}

@@ -38,8 +38,14 @@ export default async function Page() {
   const t = await getTranslations('Home');
   const [{ data: categoryList }, { data: navigationList }] = await Promise.all([
     supabase.from('navigation_category').select(),
-    supabase.from('web_navigation').select().order('collection_time', { ascending: false }).limit(12),
+    supabase.from('web_navigation').select('*, tag_name').order('collection_time', { ascending: false }).limit(12),
   ]);
+
+  // 处理数据，为每个导航项添加标签
+  const navigationListWithTags = navigationList?.map((item) => ({
+    ...item,
+    tags: item.tag_name ? [item.tag_name] : [],
+  }));
 
   return (
     <div className='relative w-full'>
@@ -51,21 +57,22 @@ export default async function Page() {
         <div className='flex w-full items-center justify-center'>
           <SearchForm />
         </div>
-        <div className='mb-10 mt-5'>
+        <div className='mb-8 mt-5'>
           <TagList
             data={categoryList!.map((item) => ({
               id: String(item.id),
               name: item.name,
               href: `/category/${item.name}`,
             }))}
+            activePath='/'
           />
         </div>
         <div className='flex flex-col gap-5'>
-          <h2 className='text-center text-[18px] lg:text-[32px]'>{t('ai-navigate')}</h2>
-          <WebNavCardList dataList={navigationList!} />
+          <h2 className='text-center text-[18px] font-bold lg:text-[32px]'>{t('ai-navigate')}</h2>
+          <WebNavCardList dataList={navigationListWithTags!} />
           <Link
             href='/explore'
-            className='mx-auto mb-5 flex w-fit items-center justify-center gap-5 rounded-[9px] border border-white p-[10px] text-sm leading-4 hover:opacity-70'
+            className='mx-auto mb-5 flex w-fit items-center justify-center gap-5 rounded-[9px] border border-white p-[10px] text-sm leading-4 transition-colors duration-300 hover:bg-white hover:text-black'
           >
             {t('exploreMore')}
             <CircleChevronRight className='mt-[0.5] h-[20px] w-[20px]' />

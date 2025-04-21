@@ -5,7 +5,16 @@ import { WebNavigation } from '@/db/supabase/types';
 import { CircleArrowRight, SquareArrowOutUpRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-export default function WebNavCard({ name, thumbnail_url, title, url, content }: WebNavigation) {
+import { TagItem } from '@/app/[locale]/(with-footer)/(home)/Tag';
+
+export default function WebNavCard({
+  name,
+  thumbnail_url,
+  title,
+  url,
+  content,
+  tags,
+}: WebNavigation & { tags?: string[] }) {
   const t = useTranslations('Home');
 
   return (
@@ -33,6 +42,15 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
         </a>
       </div>
       <p className='line-clamp-3 px-[6px] text-xs text-white/70 lg:line-clamp-5 lg:text-sm'>{content}</p>
+
+      {tags && tags.length > 0 && (
+        <div className='mt-auto flex flex-wrap gap-2 px-[6px]'>
+          {tags.slice(0, 3).map((tag) => (
+            <TagItem key={tag}>{tag}</TagItem>
+          ))}
+          {tags.length > 3 && <span className='text-xs text-white/70'>+{tags.length - 3}</span>}
+        </div>
+      )}
     </div>
   );
 }

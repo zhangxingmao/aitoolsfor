@@ -36,8 +36,14 @@ export default async function Page({ params }: { params: { search?: string } }) 
   const { data: categoryList } = await supabase.from('navigation_category').select();
   const { data: dataList } = await supabase
     .from('web_navigation')
-    .select()
+    .select('*, tag_name')
     .ilike('detail', `%${decodeURI(params?.search || '')}%`);
+
+  // 处理数据，为每个导航项添加标签
+  const dataListWithTags = dataList?.map((item) => ({
+    ...item,
+    tags: item.tag_name ? [item.tag_name] : [],
+  }));
 
   return (
     <Suspense fallback={<Loading />}>
@@ -56,7 +62,7 @@ export default async function Page({ params }: { params: { search?: string } }) 
         {dataList && !!dataList.length && params?.search ? (
           <>
             <h2 className='mb-1 text-left text-[18px] lg:text-2xl'>{t('result')}</h2>
-            <WebNavCardList dataList={dataList!} />
+            <WebNavCardList dataList={dataListWithTags!} />
           </>
         ) : (
           <Empty title={t('empty')} />

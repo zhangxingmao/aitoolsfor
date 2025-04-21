@@ -20,10 +20,16 @@ export default async function ExploreList({ pageNum }: { pageNum?: string }) {
     supabase.from('navigation_category').select(),
     supabase
       .from('web_navigation')
-      .select('*', { count: 'exact' })
+      .select('*, tag_name', { count: 'exact' })
       .order('collection_time', { ascending: false })
       .range(start, end),
   ]);
+
+  // 处理数据，为每个导航项添加标签
+  const navigationListWithTags = navigationList?.map((item) => ({
+    ...item,
+    tags: item.tag_name ? [item.tag_name] : [],
+  }));
 
   return (
     <>
@@ -39,7 +45,7 @@ export default async function ExploreList({ pageNum }: { pageNum?: string }) {
           }))}
         />
       </div>
-      <WebNavCardList dataList={navigationList!} />
+      <WebNavCardList dataList={navigationListWithTags!} />
       <BasePagination
         currentPage={currentPage}
         pageSize={WEB_PAGE_SIZE}
