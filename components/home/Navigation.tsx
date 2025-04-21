@@ -31,12 +31,12 @@ export default function Navigation() {
           <div>
             <Link className='hover:opacity-80' href='/' title={t('title')}>
               <BaseImage
-                src='/images/tap4-ai.svg'
-                alt={t('title')}
+                src='/images/aitoolsfor.svg'
+                alt='AI Tools For - Find the Best AI Tools'
                 title={t('title')}
-                width={64}
+                width={200}
                 height={64}
-                className='size-[58px] lg:size-16'
+                className='h-[32px] w-auto lg:h-[40px]'
               />
             </Link>
           </div>

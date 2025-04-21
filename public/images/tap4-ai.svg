@@ -1,18 +1,36 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Group 238179">
-<g id="Group 238178">
-<path id="Union" d="M16 20V28.3333H25.3673V49H27.8537H33.6327" stroke="url(#paint0_linear_4962_18104)" stroke-opacity="0.4"/>
-<path id="Union_2" d="M30.102 25.5H19.5V16.5H22.122H23.6829H25.2439H50.5V24.6842V25.5H39.898H39.398V26V45.5H33.8293H30.602V26V25.5H30.102Z" stroke="url(#paint1_linear_4962_18104)"/>
-</g>
-</g>
-<defs>
-<linearGradient id="paint0_linear_4962_18104" x1="29.5" y1="20" x2="29.5" y2="45" gradientUnits="userSpaceOnUse">
-<stop offset="0.673717" stop-color="white"/>
-<stop offset="1" stop-color="#FFEA9F"/>
-</linearGradient>
-<linearGradient id="paint1_linear_4962_18104" x1="36.1707" y1="46" x2="36.1707" y2="16" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FFEA9F"/>
-<stop offset="0.389316" stop-color="white"/>
-</linearGradient>
-</defs>
+  <g id="aitoolsfor-logo">
+    <!-- 背景渐变 -->
+    <rect width="64" height="64" rx="16" fill="url(#paint0_linear)" />
+    
+    <!-- 中心圆 -->
+    <circle cx="32" cy="32" r="18" fill="url(#paint1_radial)" fill-opacity="0.6" />
+    
+    <!-- 工具图标 - 齿轮 -->
+    <path d="M32 21C31.2044 21 30.4413 21.3161 29.8787 21.8787C29.3161 22.4413 29 23.2044 29 24V26H35V24C35 23.2044 34.6839 22.4413 34.1213 21.8787C33.5587 21.3161 32.7956 21 32 21Z" fill="white"/>
+    <path d="M42 29H40V35H42C42.7956 35 43.5587 34.6839 44.1213 34.1213C44.6839 33.5587 45 32.7956 45 32C45 31.2044 44.6839 30.4413 44.1213 29.8787C43.5587 29.3161 42.7956 29 42 29Z" fill="white"/>
+    <path d="M32 38C32.7956 38 33.5587 38.3161 34.1213 38.8787C34.6839 39.4413 35 40.2044 35 41V43H29V41C29 40.2044 29.3161 39.4413 29.8787 38.8787C30.4413 38.3161 31.2044 38 32 38Z" fill="white"/>
+    <path d="M22 29C21.2044 29 20.4413 29.3161 19.8787 29.8787C19.3161 30.4413 19 31.2044 19 32C19 32.7956 19.3161 33.5587 19.8787 34.1213C20.4413 34.6839 21.2044 35 22 35H24V29H22Z" fill="white"/>
+    
+    <!-- 中心 AI 文字 -->
+    <path d="M26.5 29L28.5 35H30.5L32.5 29H30.5L29.5 33L28.5 29H26.5Z" fill="white"/>
+    <path d="M33.5 29V30.5H35V31.5H33.5V33H35V34.5H33.5V35H37V29H33.5Z" fill="white"/>
+    
+    <!-- 闪光效果 -->
+    <circle cx="24" cy="23" r="1.5" fill="white" />
+    <circle cx="40" cy="23" r="1" fill="white" />
+    <circle cx="43" cy="40" r="1.2" fill="white" />
+    <circle cx="21" cy="40" r="0.8" fill="white" />
+  </g>
+  
+  <defs>
+    <linearGradient id="paint0_linear" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4F46E5" />
+      <stop offset="1" stop-color="#0EA5E9" />
+    </linearGradient>
+    <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(32 32) rotate(90) scale(18)">
+      <stop offset="0" stop-color="#FFFFFF" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
 </svg>

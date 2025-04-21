@@ -23,7 +23,11 @@ export default function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning className='dark'>
-      <body className='relative mx-auto flex min-h-screen flex-col bg-tap4-black text-white'>
+      <head>
+        <link rel='icon' href='/images/aitoolsfor.svg' type='image/svg+xml' />
+        <link rel='alternate icon' href='/favicon.ico' />
+      </head>
+      <body className='bg-tap4-black relative mx-auto flex min-h-screen flex-col text-white'>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Toaster
             position='top-center'
