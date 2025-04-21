@@ -21,6 +21,10 @@ export default function WebNavCardList({ dataList }: { dataList: (WebNavigation 
           created_at={item.created_at}
           category_name={item.category_name}
           tag_name={item.tag_name}
+          // Add missing properties with default values
+          image_url={item.image_url}
+          star_rating={item.star_rating}
+          website_data={item.website_data}
         />
       ))}
     </div>

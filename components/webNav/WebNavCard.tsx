@@ -1,15 +1,30 @@
 /* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable react/no-unused-prop-types */
 
 import Link from 'next/link';
-import { WebNavigation } from '@/db/supabase/types';
 import { CircleArrowRight, SquareArrowOutUpRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { TagItem } from '@/app/[locale]/(with-footer)/(home)/Tag';
 
-interface WebNavCardProps extends WebNavigation {
+// Create a customized version of WebNavigation with all properties as optional
+interface WebNavCardProps {
+  name: string;
+  thumbnail_url?: string;
+  title?: string;
+  url?: string;
+  content?: string;
   tags?: string[];
-  created_at?: any; // Adding the missing property
+  id?: number;
+  detail?: string;
+  collection_time?: string;
+  created_at?: any;
+  category_name?: string;
+  tag_name?: string;
+  // The following are required in WebNavigation but not used in this component
+  image_url?: string;
+  star_rating?: number;
+  website_data?: string;
 }
 
 export default function WebNavCard({
@@ -39,8 +54,8 @@ export default function WebNavCard({
       <Link href={`/ai/${name}`} title={title} className='group relative'>
         <img
           src={thumbnail_url || ''}
-          alt={title}
-          title={title}
+          alt={title || ''}
+          title={title || ''}
           width={310}
           height={174}
           className='aspect-[310/174] w-full rounded-xl bg-white/40 hover:opacity-70'
@@ -50,10 +65,10 @@ export default function WebNavCard({
         </div>
       </Link>
       <div className='flex items-center justify-between px-[6px]'>
-        <a href={url} title={title} target='_blank' rel='nofollow' className='hover:opacity-70'>
+        <a href={url || '#'} title={title || ''} target='_blank' rel='nofollow' className='hover:opacity-70'>
           <h3 className='line-clamp-1 flex-1 text-sm font-bold lg:text-base'>{title}</h3>
         </a>
-        <a href={url} title={title} target='_blank' rel='nofollow' className='hover:opacity-70'>
+        <a href={url || '#'} title={title || ''} target='_blank' rel='nofollow' className='hover:opacity-70'>
           <SquareArrowOutUpRight className='size-5' />
           <span className='sr-only'>{title}</span>
         </a>
