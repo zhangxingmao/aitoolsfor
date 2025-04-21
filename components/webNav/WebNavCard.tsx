@@ -7,6 +7,11 @@ import { useTranslations } from 'next-intl';
 
 import { TagItem } from '@/app/[locale]/(with-footer)/(home)/Tag';
 
+interface WebNavCardProps extends WebNavigation {
+  tags?: string[];
+  created_at?: any; // Adding the missing property
+}
+
 export default function WebNavCard({
   name,
   thumbnail_url,
@@ -14,7 +19,19 @@ export default function WebNavCard({
   url,
   content,
   tags,
-}: WebNavigation & { tags?: string[] }) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  id,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  detail,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  collection_time,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  created_at,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  category_name,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  tag_name,
+}: WebNavCardProps) {
   const t = useTranslations('Home');
 
   return (
