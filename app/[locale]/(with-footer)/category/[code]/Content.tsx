@@ -14,6 +14,7 @@ export default function Content({
   total,
   pageSize,
   route,
+  categoryDescription,
 }: {
   headerTitle: string;
   navigationList: (WebNavigation & { tags?: string[] })[];
@@ -21,6 +22,7 @@ export default function Content({
   total: number;
   pageSize: number;
   route: string;
+  categoryDescription?: string;
 }) {
   const t = useTranslations('Category');
 
@@ -28,6 +30,9 @@ export default function Content({
     <>
       <div className='mx-auto flex flex-col gap-3 py-5 lg:pt-10'>
         <h1 className='text-center text-[28px] font-bold lg:text-5xl'>{headerTitle}</h1>
+        {categoryDescription && (
+          <p className='mx-auto max-w-3xl text-center text-sm text-gray-300 lg:text-base'>{categoryDescription}</p>
+        )}
         <div className='mx-auto'>
           <ExploreBreadcrumb
             linkList={[

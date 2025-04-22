@@ -1,21 +1,45 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
+import { createClient } from '@/db/supabase/client';
 import { useTranslations } from 'next-intl';
 
-export default function NotFound() {
+export default async function NotFound() {
   const t = useTranslations('NotFound');
+
+  // 获取所有可用分类，作为推荐链接
+  const supabase = createClient();
+  const { data: categories } = await supabase.from('navigation_category').select().limit(6);
+
+  const recommendedCategories = categories || [];
+
   return (
-    <div className='flex w-screen flex-1 items-center justify-center'>
-      <div className='flex flex-col items-center gap-4'>
-        <img src='/images/404.png' className='h-[208px] w-[323px] -translate-x-4' alt='404' />
-        <h1 className='text-sm text-white/40'>{t('title')}</h1>
-        <Link
-          href='/'
-          className='flex h-9 items-center justify-center rounded-full border border-white/40 px-[10px] text-sm uppercase text-white/40 hover:cursor-pointer hover:opacity-80'
-        >
-          {t('goHome')}
-        </Link>
-      </div>
+    <div className='flex h-[80vh] w-full flex-col items-center justify-center text-center'>
+      <h1 className='mb-4 text-6xl font-bold tracking-tight'>{t('title') || 'Page Not Found'}</h1>
+      <p className='mb-8 text-xl'>{t('description') || 'The page you are looking for does not exist.'}</p>
+
+      {recommendedCategories.length > 0 && (
+        <div className='mb-8'>
+          <h2 className='mb-4 text-xl font-semibold'>Popular AI Tool Categories</h2>
+          <div className='flex flex-wrap justify-center gap-3'>
+            {recommendedCategories.map((category) => (
+              <Link
+                key={category.id}
+                href={`/category/${category.name}`}
+                className='rounded-md bg-gray-800 px-4 py-2 hover:bg-gray-700'
+              >
+                AI Tools For {category.name.replace(/-/g, ' ')}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <Link
+        href='/'
+        className='rounded-md border border-white px-4 py-2 text-white transition-colors hover:bg-white hover:text-black'
+      >
+        {t('goHome') || 'Back to Home'}
+      </Link>
     </div>
   );
 }

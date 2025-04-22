@@ -2,7 +2,8 @@ import { HTMLAttributeAnchorTarget } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-import { CONTACT_US_EMAIL } from '@/lib/env';
+// 直接硬编码联系邮箱，确保客户端可以正常工作
+const CONTACT_EMAIL = 'yanzhang582@gmail.com';
 
 function InfoLink({
   href,
@@ -101,7 +102,7 @@ export default function Footer() {
               <InfoLink key={item.href} href={item.href} title={item.title} />
             ))}
             <a
-              href={`mailto:${CONTACT_US_EMAIL}`}
+              href={`mailto:${CONTACT_EMAIL}`}
               className='whitespace-nowrap text-xs hover:opacity-70 lg:text-sm'
               title={t('contactUs')}
               type='email'

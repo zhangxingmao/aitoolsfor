@@ -1,4 +1,9 @@
-Sitemap: https://www.tap4.ai/sitemap.xml
-
 User-agent: *
 Allow: /
+Disallow: /api/
+
+Sitemap: https://aitoolsfor.online/sitemap.xml
+
+# AI Tools For Categories
+# text-writing, image, video, business, education, prompt, teachers, 
+# studying, students, song-lyrics, ppt
