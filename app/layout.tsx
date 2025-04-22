@@ -1,3 +1,5 @@
+import Script from 'next/script';
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   // 定义网站的JSON-LD结构化数据
   const jsonLd = {
@@ -30,7 +32,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+
+        {/* Google Analytics */}
+        <Script strategy='afterInteractive' src='https://www.googletagmanager.com/gtag/js?id=G-3HM05SNTGN' />
+        <Script
+          id='google-analytics'
+          strategy='afterInteractive'
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-3HM05SNTGN');
+            `,
+          }}
+        />
+      </body>
     </html>
   );
 }
