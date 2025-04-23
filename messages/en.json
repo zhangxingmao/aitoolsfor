@@ -115,7 +115,8 @@
   },
   "NotFound": {
     "title": "404 Not Found",
-    "goHome": "go home"
+    "goHome": "go home",
+    "description": "The page you are looking for does not exist."
   },
   "Home": {
     "title": "Discover The Best AI Tools For Different Fields",
@@ -181,5 +182,9 @@
     "submit": {
       "title": "Submit your AI tool and get Get Traffic | AI Tools For Directory"
     }
+  },
+  "Error": {
+    "title": "Something went wrong!",
+    "description": "An unexpected error occurred. Please try again later."
   }
 }
